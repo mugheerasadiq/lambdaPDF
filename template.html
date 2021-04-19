@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Invoice</title>
+
+</head>
+
+<body style="color: black !important;">
+
+    <div style="margin: 50px;">
+        <div style="display: flex; flex-direction: column;">
+            <div style="   display: flex; justify-content: flex-end;">
+                <img src="http://17857796.s21i.faiusr.com/4/ABUIABAEGAAgvLqV5QUo0NbVyQYwtwQ4xgE!200x200.png.webp"
+                    alt="ARRI TEC" />
+            </div>
+            <div style=" display: flex; flex-direction: row; justify-content: space-between;">
+                <div style="display: flex; flex-direction: column; width: 90%;">
+                    <p style="border-bottom: 2px solid black">PRO FORMA INVOICE</p>
+                    <h3 style="margin: 0px; padding: 0px; font-weight: bold; font-size: 20px;">
+                        {{organization_id.company_name}}</h3>
+                    <p style="margin: 0px; margin-top: 5px;">{{organization_id.address}}</p>
+                    <p style="margin: 0px; margin-top: 5px;">{{organization_id.city}}, {{organization_id.state}}
+                        {{organization_id.zip_code}}</p>
+                    <p style="margin: 0px; margin-top: 5px;">PHONE: {{organization_id.phone}}</p>
+                    <p style="margin: 0px; margin-top: 5px;">ATTN.: {{organization_id.ATTN}}</p>
+                    <h3 style="color: blue !important; margin: 0px; padding: 0px; font-weight: bold; font-size: 20px;">
+                        PI: {{organization_id.PI}}</h3>
+                </div>
+                <div style="   display: flex; flex-direction: column; width: 100%; text-align: right;">
+                    <p style="margin: 0px; margin-top: 5px;"><b>{{vendor_id.vendor_name}}</b></p>
+                    <p style="margin: 0px; margin-top: 5px;">{{vendor_id.address.address_line_one}} {{vendor_id.state}}
+                        {{vendor_id.city}} {{vendor_id.country}}</p>
+                    <p style="margin: 0px; margin-top: 5px;">PHONE: {{vendor_id.phone}}</p>
+                    <p style="margin: 0px; margin-top: 5px;">MOBILE: {{vendor_id.mobile}}</p>
+                    <p style="margin: 0px; margin-top: 5px;">VERA</p>
+                    <p style="margin: 0px; margin-top: 5px;">25.03.2021</p>
+                </div>
+            </div>
+        </div>
+
+        <table style=" border-spacing: 0; width: 100%; margin-top: 10px;">
+            <tr>
+                <th style=" border-bottom: 2px solid black; font-weight: normal; text-align: center;">ART. NO.</th>
+                <th style=" border-bottom: 2px solid black; font-weight: normal; text-align: left;">DESCRIPTION &
+                    SPECIFICATION</th>
+                <th style=" border-bottom: 2px solid black; font-weight: normal; text-align: center;">EXW PRICE</th>
+                <th style=" border-bottom: 2px solid black; font-weight: normal; text-align: center;">QTY</th>
+                <th style=" border-bottom: 2px solid black; font-weight: normal; text-align: center;">UNIT /USD</th>
+                <th style=" border-bottom: 2px solid black; font-weight: normal; text-align: center;">TOTAL /USD</th>
+            </tr>
+
+            {{#each items}}
+            <tr>
+                <td></td>
+                <td style="text-align: left; font-size: 12px; line-height: 2em;"><b>{{this.item_upc.p_title}} </b><br />
+                    {{#if this.item_upc.secondary_identifier}} {{this.item_upc.secondary_identifier}} <br />{{/if}}
+                    {{this.item_upc.p_description}}</td>
+                <td></td>
+                <td style=" font-size: 15px;">{{this.qty}}</td>
+                <td style=" font-size: 15px;">{{this.item_upc.p_price}}</td>
+                <td style=" font-size: 15px;">{{math this.qty "*" this.item_upc.p_price}}</td>
+            </tr>
+            {{/each}}
+            <tr>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="6" style="border-bottom: 2px solid black;"></td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td colspan="2" style="font-size: 15px; background: yellow !important;"><b>TOTAL</b></td>
+                <td style="font-size: 15px; background: yellow !important;"><b>61,384.56</b></td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td style=" font-size: 15px;" colspan="2"><b>20% DEPOSIT</b></td>
+                <td style=" font-size: 15px;"><b>12277.00</b></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
